@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система управления Зооотелем</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Панель управления гостиницей «Зооотель»</h1>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h2>Оформление нового бронирования</h2>
+            <form id="bookingForm">
+                <input type="text" id="clientName" placeholder="ФИО владельца" required>
+                <input type="text" id="petName" placeholder="Кличка питомца" required>
+                <select id="roomSelect" required>
+                    <option value="">Выберите номер</option>
+                    <option value="1">K-101 (Эко-бокс)</option>
+                    <option value="2">K-102 (Эко-бокс)</option>
+                    <option value="3">L-201 (Люкс)</option>
+                    <option value="4">L-202 (Люкс)</option>
+                </select>
+                <label>Дата заезда:</label>
+                <input type="date" id="checkIn" required>
+                <label>Дата выезда:</label>
+                <input type="date" id="checkOut" required>
+                <button type="submit">Забронировать номер</button>
+            </form>
+        </section>
+
+        <section class="rooms-section">
+            <h2>Текущий статус номеров отеля</h2>
+            <div id="roomsGrid" class="grid"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
