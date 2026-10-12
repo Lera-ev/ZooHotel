@@ -4,6 +4,8 @@ const path = require('path');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const mockRooms = [
@@ -18,12 +20,26 @@ app.get('/api/rooms', (req, res) => {
 });
 
 app.post('/api/bookings', (req, res) => {
-    const { clientName, petName, roomID, checkIN, checkOut } = req.body;
-    console.log(`Новое бронирование: Клиент ${clientName}, Питомец ${petName}, Комната ID ${roomId}`);
-    res.status(201).json({
-        success: true,
-        message: 'Бронирование успешно внесено в систему Зооотеля!'
-    });
+    try {
+        console.log("Получено тело запроса:", req.body);
+
+        const clientName = req.body.clientName || "Не указано";
+        const petName = req.body.petName || "Не указано";
+        const roomId = req.body.roomId || "Не указано";
+        
+        console.log(`Успешно обработано: Клиент ${clientName}, Питомец ${petName}, Комната ID ${roomId}`);
+        
+        return res.status(201).json({ 
+            success: true, 
+            message: 'Бронирование успешно внесено в систему Зооотеля!' 
+        });
+    } catch (error) {
+        console.error("Критическая ошибка на сервере:", error);
+        return res.status(500).json({ 
+            success: false, 
+            message: 'Внутренняя ошибка сервера при бронировании' 
+        });
+    }
 });
 
 const PORT = process.env.PORT || 3000;
