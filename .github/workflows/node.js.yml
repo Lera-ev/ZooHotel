@@ -32,5 +32,5 @@ jobs:
         context: .
         push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         tags: |
-          ghcr.io/${{ github.repository_owner }}/zoohotel:latest
-          ghcr.io/${{ github.repository_owner }}/zoohotel:${{ github.sha }}
+          ghcr.io/lera-ev/zoohotel:latest
+          ghcr.io/lera-ev/zoohotel:${{ github.sha }}
